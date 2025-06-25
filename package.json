@@ -1,0 +1,31 @@
+{
+  "name": "reactlearn",
+  "version": "1.0.0",
+  "description": "React Learning",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HanumeshBG/ReactLearning.git"
+  },
+  "author": "Hanumesh B G",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HanumeshBG/ReactLearning/issues"
+  },
+  "homepage": "https://github.com/HanumeshBG/ReactLearning#readme",
+  "devDependencies": {
+    "parcel": "^2.15.2"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^6.30.1"
+  },
+  "browserslist": [
+    "last 10 versions"
+  ]
+}
