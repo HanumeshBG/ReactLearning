@@ -1,14 +1,20 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {WithPromotedLabel} from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { SWIGGY_API_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
 
 const Body = () => {
     const [restaurants, setRestaurants] = useState([]);
     const [filteredList, setFilteredList] = useState([]);
     const [searchText, setSearchText] = useState("");
+
+    const { LoggedInUser, setUserName } = useContext(UserContext);
+
+    const RestaurantCardPromoted = WithPromotedLabel(RestaurantCard);
 
     useEffect(() => {
       fetchData()
@@ -32,32 +38,36 @@ const Body = () => {
   
   return restaurants.length === 0 ? <Shimmer /> : (
     <div className='body'>
-      <div className='filter'>
-        <div className='search-bar'>
-          <input type="text" placeholder='Search...' value={searchText} onChange={(e) => {
+      <div className='m-3 p-2 flex justify-between items-center'>
+        <div className='p-2 flex items-center gap-2'>
+          <input className="pl-1 border border-solid rounded-lg" type="text" placeholder='Search...' value={searchText} onChange={(e) => {
             setSearchText(e.target.value);
           }}/>
-          <button className='search-btn' onClick={() => {
+          <button className='px-2 bg-blue-200 rounded-lg hover:bg-blue-300 hover:cursor-pointer' onClick={() => {
             const filtered = restaurants.filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase()));
             setFilteredList(filtered);
           }}>Search</button>
         </div>
-        <div>
+        <div className="p-2 bg-gray-100 rounded-lg flex items-center gap-2 hover:bg-gray-200 hover:cursor-pointer">
           <button 
-            className='filter-btn'
+            className=''
             onClick={() => {
                     const filtered = restaurants.filter((res) => res.info.avgRating > 4.5);
                     setFilteredList(filtered);
                 }}
             > Top Rated Restaurant</button>
         </div>
+        <div className="p-2 rounded-lg flex items-center gap-2">
+          <label className="font-bold">User: </label>
+          <input type="text" className="px-2 border border-black" value={LoggedInUser} onChange={(e) => {setUserName(e.target.value)}} />
+        </div>
         <div/>
       </div>
-      <div className='restaurant-list'>
+      <div className='flex flex-wrap justify-center items-center gap-2'>
         {
           filteredList.map((restaurant) => (
             <Link key={restaurant.info.id} to={`/restaurant/${restaurant.info.id}`}>
-              <RestaurantCard resData={restaurant} />
+              {restaurant.info.Promoted == undefined ? <RestaurantCardPromoted resData={restaurant} /> : <RestaurantCard resData={restaurant} />}
             </Link>
           ))
         }

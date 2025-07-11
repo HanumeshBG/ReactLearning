@@ -39,7 +39,7 @@
         // );
 // ********************************************************END Basics***********************************************************
   
-import React, {lazy, Suspense} from 'react';
+import React, {lazy, Suspense, useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './components/Header';
 import Body from './components/Body';
@@ -49,6 +49,10 @@ import ContactUS from './components/ContactUs';
 import RestaurantDetails from './components/RestaurantDetails';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'; 
 import Shimmer from './components/Shimmer';
+import UserContext from './utils/UserContext'; // Importing UserContext
+import { Provider } from 'react-redux';
+import appStore from './utils/redux/appStore';
+import Cart from './components/Cart';
 
 /**
  * Header
@@ -74,12 +78,33 @@ import Shimmer from './components/Shimmer';
 
 const About = lazy(() => import('./components/About'))
 
+
 const AppLayout = () => {
+  const [userName , setUserName] = useState("");
+
+  useEffect(() => {
+    const data = {
+      name: "Hanumesh B G",
+      location: "Bangalore"
+    }
+    setUserName(data.name);
+  }, [])
   return (
-    <div className='app'>
-      <Header />
-      <Outlet />
-    </div>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ LoggedInUser: userName, setUserName }}>
+        <div className='app'>
+          {/* 
+            <UserContext.Provider value={{ LoggedInUser: "Sujatha G" }}>
+              // This is valid code we can use UserContext as many time as  }> 
+              <Header />
+            </UserContext.Provider> 
+          */}            
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
+    
   );
 }
 
@@ -103,6 +128,10 @@ const appRouter = createBrowserRouter([
       {
         path: '/restaurant/:resId',
         element: <RestaurantDetails />
+      },
+      {
+        path: '/Cart',
+        element: <Cart />
       }
     ],
     errorElement: <Error />,
