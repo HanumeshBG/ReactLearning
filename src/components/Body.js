@@ -40,7 +40,7 @@ const Body = () => {
     <div className='body'>
       <div className='m-3 p-2 flex justify-between items-center'>
         <div className='p-2 flex items-center gap-2'>
-          <input className="pl-1 border border-solid rounded-lg" type="text" placeholder='Search...' value={searchText} onChange={(e) => {
+          <input data-testid="restSearch" className="pl-1 border border-solid rounded-lg" type="text" placeholder='Search...' value={searchText} onChange={(e) => {
             setSearchText(e.target.value);
           }}/>
           <button className='px-2 bg-blue-200 rounded-lg hover:bg-blue-300 hover:cursor-pointer' onClick={() => {
@@ -52,7 +52,7 @@ const Body = () => {
           <button 
             className=''
             onClick={() => {
-                    const filtered = restaurants.filter((res) => res.info.avgRating > 4.5);
+                    const filtered = restaurants.filter((res) => res.info.avgRating > 4.0);
                     setFilteredList(filtered);
                 }}
             > Top Rated Restaurant</button>

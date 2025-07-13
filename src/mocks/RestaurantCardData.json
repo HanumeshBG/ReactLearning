@@ -1,0 +1,98 @@
+{
+    "resData": {
+        "info": {
+            "id": "23681",
+            "name": "McDonald's",
+            "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/3/ff52011a-d49c-4809-9b81-01c7eff0a83b_23681.jpg",
+            "locality": "Cmh Road",
+            "areaName": "Indiranagar",
+            "costForTwo": "₹400 for two",
+            "cuisines": [
+                "Burgers",
+                "Beverages",
+                "Cafe",
+                "Desserts"
+            ],
+            "avgRating": 4.4,
+            "parentId": "630",
+            "avgRatingString": "4.4",
+            "totalRatingsString": "48K+",
+            "sla": {
+                "deliveryTime": 24,
+                "lastMileTravel": 0.3,
+                "serviceability": "SERVICEABLE",
+                "slaString": "20-25 mins",
+                "lastMileTravelString": "0.3 km",
+                "iconType": "ICON_TYPE_EMPTY"
+            },
+            "availability": {
+                "nextCloseTime": "2025-07-13 06:45:00",
+                "opened": true
+            },
+            "badges": {
+                "imageBadges": [
+                    {
+                        "imageId": "bolt/big%20RX%20listing%2018px.png",
+                        "description": "bolt!"
+                    },
+                    {
+                        "imageId": "Ratnesh_Badges/Rx_Awards_2025/Bolt.png",
+                        "description": "Delivery!"
+                    }
+                ]
+            },
+            "isOpen": true,
+            "type": "F",
+            "badgesV2": {
+                "entityBadges": {
+                    "imageBased": {
+                        "badgeObject": [
+                            {
+                                "attributes": {
+                                    "description": "bolt!",
+                                    "imageId": "bolt/big%20RX%20listing%2018px.png"
+                                }
+                            },
+                            {
+                                "attributes": {
+                                    "description": "Delivery!",
+                                    "imageId": "Ratnesh_Badges/Rx_Awards_2025/Bolt.png"
+                                }
+                            }
+                        ]
+                    },
+                    "textBased": {},
+                    "textExtendedBadges": {}
+                }
+            },
+            "aggregatedDiscountInfoV3": {
+                "header": "ITEMS",
+                "subHeader": "AT ₹119"
+            },
+            "differentiatedUi": {
+                "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                "differentiatedUiMediaDetails": {
+                    "lottie": {},
+                    "video": {}
+                }
+            },
+            "reviewsSummary": {},
+            "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+            "restaurantOfferPresentationInfo": {},
+            "externalRatings": {
+                "aggregatedRating": {
+                    "rating": "--"
+                }
+            },
+            "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+        },
+        "analytics": {
+            "context": "seo-data-b8c7a9c4-39be-4524-881f-fa869a787aab"
+        },
+        "cta": {
+            "link": "https://www.swiggy.com/city/bangalore/mcdonalds-cmh-road-indiranagar-rest23681",
+            "type": "WEBLINK"
+        }
+    },
+    "children": "  "
+}
