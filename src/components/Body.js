@@ -6,6 +6,7 @@ import { SWIGGY_API_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
 import { useContext } from "react";
+import useFetch from "../utils/useFetch";
 
 const Body = () => {
     const [restaurants, setRestaurants] = useState([]);
@@ -16,26 +17,15 @@ const Body = () => {
 
     const RestaurantCardPromoted = WithPromotedLabel(RestaurantCard);
 
+    const {data, loading, error} = useFetch(SWIGGY_API_URL);
     useEffect(() => {
-      fetchData()
-    },[]);
+        if(data){
+            let xRestaurants = data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            setRestaurants(xRestaurants);
+            setFilteredList(xRestaurants);
+        }
+    }, [data]);
 
-    const fetchData = async () => {
-      try {
-        const data = await fetch(
-          // "https://raw.githubusercontent.com/namastedev/namaste-react/refs/heads/main/swiggy-api"
-          SWIGGY_API_URL
-        )
-        const json = await data.json();
-        let xRestaurants = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-        setRestaurants(xRestaurants);
-        setFilteredList(xRestaurants);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-
-  
   return restaurants.length === 0 ? <Shimmer /> : (
     <div className='body'>
       <div className='m-3 p-2 flex justify-between items-center'>

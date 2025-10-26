@@ -1,25 +1,21 @@
 import { useEffect, useState } from "react";
 import { SWIGGY_MENU_API_URL} from "../utils/constants";
+import useFetch from "./useFetch";
 
 const useRestaurantDetails = (resId) => {
     const [restaurantInfo, setRestaurantInfo] = useState(null);
 
+    const {data, loading, error} = useFetch(`${SWIGGY_MENU_API_URL}${resId}`, {
+                method: "GET",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            });
     useEffect(() => {
-        fetchRestaurantDetails();
-    }, []);
-
-    const fetchRestaurantDetails = async () => {
-        try {
-            const data = await fetch(
-                `${SWIGGY_MENU_API_URL}${resId}`
-            );
-            const json = await data.json(); 
-            setRestaurantInfo(json)
-        } catch (error) {
-            console.error("Error fetching restaurant details:", error); 
-        }  
-    }
-
+        if(data){
+            setRestaurantInfo(data);
+        }
+    }, [data])
     return restaurantInfo;
 }
 
